@@ -1,105 +1,80 @@
 from flask import render_template, request, url_for, redirect
 from app.db.db import db
+from app.entities.Client import Client
+import datetime
 from sqlalchemy import asc
 
-
-'''def clients():
+def clients():
     if request.method == "POST":
-        pesel = request.form["pesel"]
-        name = request.form["name"]
-        surname = request.form["surname"]
+        username = request.form["username"]
+        dateOfBirth = request.form["dateOfBirth"]
         email = request.form["email"]
-        phone_num = request.form["phone_num"]
-        born = request.form["born"]
-        address = request.form["address"]
-        disablity = request.form["disability"]
-        medical_specialization = request.form["medical_specialization"]
-        doctor = Doctor(
-            pesel=str(pesel),
+        favoriteMusic = request.form["favoriteMusic"]
+        favoriteEventType = request.form["favoriteEventType"]
+        newClient = Client(
+            username=username,
+            dateOfBirth=dateOfBirth,
             email=email,
-            name=name,
-            surname=surname,
-            phone_num=phone_num,
-            born=born,
-            address=address,
-            disablity=bool(disablity),
-            medical_specialization=medical_specialization,
+            enabled=True,
+            locked=False,
+            staticUserId=1,
+            favoriteMusic=favoriteMusic,
+            favoriteEventType=favoriteEventType,
+            registrationDate=datetime.datetime.now(),
         )
-        db.session.add(doctor)
+        db.session.add(newClient)
         db.session.commit()
 
-        return redirect(url_for("blueprint.doctors"))
+        return redirect(url_for("blueprint.clients"))
     else:
-        # doctors = Doctor.query.order_by(asc("id"))
-        page = request.args.get("page", 1, type=int)
-        doctors = Doctor.query.paginate(page=page, per_page=ROWS_PER_PAGE)
-        return render_template("doctors.html", doctors=doctors)
+        clients = Client.query.order_by(asc(Client.id)).all()
+        return render_template("clients.html", clients=clients)
 
 
 def client(id):
-    doctor = Doctor.query.get_or_404(id)
-    return render_template("doctor.html", doctor=doctor)
+    client = Client.query.get_or_404(id)
+    return render_template("client.html", client=client)
 
 
 def addClient():
-    return render_template("add_doctor.html")
+    return render_template("addClient.html")
 
 
 def deleteClient(id):
-    doctor = Doctor.query.get_or_404(id)
-    db.session.delete(doctor)
+    client = Client.query.get_or_404(id)
+    db.session.delete(client)
     db.session.commit()
-    return redirect(url_for("blueprint.doctors"))
+    return redirect(url_for("blueprint.clients"))
 
 
 def editClient(id):
-    doctor = Doctor.query.get_or_404(id)
+    oldClient = Client.query.get_or_404(id)
     if request.method == "POST":
 
         try:
-            pesel = str(request.form["pesel"])
+            oldClient.username = request.form["username"]
         except:
-            pesel = doctor.pesel
+            pass
 
         try:
-            disablity = bool(request.form["disability"])
+            oldClient.email = request.form["email"]
         except:
-            disablity = doctor.disablity
+            pass
 
-        name = request.form["name"] if request.form["name"] != "" else doctor.name
-        surname = (
-            request.form["surname"] if request.form["surname"] != "" else doctor.surname
-        )
-        email = request.form["email"] if request.form["email"] != "" else doctor.email
-        phone_num = (
-            request.form["phone_num"]
-            if request.form["phone_num"] != ""
-            else doctor.phone_num
-        )
-        born = request.form["born"] if request.form["born"] != "" else doctor.born
-        address = (
-            request.form["address"] if request.form["address"] != "" else doctor.address
-        )
-        medical_specialization = (
-            request.form["medical_specialization"]
-            if request.form["medical_specialization"] != ""
-            else doctor.medical_specialization
-        )
+        try:
+            oldClient.favoriteMusic = request.form["favoriteMusic"]
+        except:
+            pass
 
-        doctor.pesel = pesel
-        doctor.email = email
-        doctor.name = name
-        doctor.surname = surname
-        doctor.phone_num = phone_num
-        doctor.born = born
-        doctor.address = address
-        doctor.disability = disablity
-        doctor.medical_specialization = medical_specialization
+        try:
+            oldClient.favoriteEventType = request.form["favoriteEventType"]
+        except:
+            pass
 
-        db.session.add(doctor)
+        db.session.add(oldClient)
         db.session.commit()
 
-        return redirect(url_for("blueprint.doctors"))
+        return redirect(url_for("blueprint.clients"))
     else:
-        return render_template("edit_doctor.html", doctor=doctor)'''
+        return render_template("editClient.html", oldClient=oldClient)
 

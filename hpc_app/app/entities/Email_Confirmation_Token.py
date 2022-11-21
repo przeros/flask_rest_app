@@ -9,7 +9,7 @@ class EmailConfirmationToken(db.Model):
     confirmationDate = db.Column(db.DateTime, unique=False, nullable=True)
     expirationDate = db.Column(db.DateTime, unique=False, nullable=True)
     token = db.Column(db.String(128), unique=False, nullable=True)
-    userId = db.Column(db.Integer, db.ForeignKey("User.id"))
+    userId = db.Column(db.Integer, db.ForeignKey("User.id", ondelete='CASCADE'))
     staticEmailConfirmationTokenId = db.Column(db.Integer, db.ForeignKey("StaticEmailConfirmationToken.id"))
 
     def __init__(

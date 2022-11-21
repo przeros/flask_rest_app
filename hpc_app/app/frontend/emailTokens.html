@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Tokens</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+<body>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/clients">Clients</a></li>
+        <li><a href="/promoters">Promoters</a></li>
+        <li><a href="/emailTokens">EmailConfirmationTokens</a></li>
+        <li><a href="/query1">Query1</a></li>
+        <li><a href="/query2">Query2</a></li>
+    </ul>
+
+    <h1>Email Tokens</h1>
+
+    {% block content %}
+    <div>
+        <br /><a href="/emailTokens/add">Add Email Token</a><br /><br />
+
+        <ul>
+            <li><a class="token" href="#">Id</a></li>
+            <li><a class="token" href="#">Token</a></li>
+            <li><a class="token" href="#">Delete Email Token</a></li>
+            <li><a class="token" href="#">Edit Email Token</a></li>
+        </ul>
+        {% for emailToken in emailTokens %}
+        <ul>
+            <li><a class="token" href="{{ url_for('blueprint.emailToken', id=emailToken.id)}}">{{ emailToken.id }}</a></li>
+            <li><a class="token" href="{{ url_for('blueprint.emailToken', id=emailToken.id)}}">{{ emailToken.token }}</a></li>
+            <li><a class="token" href="{{ url_for('blueprint.deleteEmailToken', id=emailToken.id)}}">Delete</a></li>
+            <li><a class="token" href="{{ url_for('blueprint.editEmailToken', id=emailToken.id)}}">Edit</a></li>
+        </ul>
+        {% endfor %}
+    </div>
+    {% endblock %}
+</body>
+</html>

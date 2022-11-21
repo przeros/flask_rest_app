@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clients</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+<body>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/clients">Clients</a></li>
+        <li><a href="/promoters">Promoters</a></li>
+        <li><a href="/emailTokens">EmailConfirmationTokens</a></li>
+        <li><a href="/query1">Query1</a></li>
+        <li><a href="/query2">Query2</a></li>
+    </ul>
+
+    <h1>Clients</h1>
+
+    {% block content %}
+    <div>
+        <br /><a href="/clients/add">Add client</a><br /><br />
+
+        <ul>
+            <li><a href="#">Id</a></li>
+            <li><a href="#">Username</a></li>
+            <li><a href="#">Delete Client</a></li>
+            <li><a href="#">Edit Client</a></li>
+        </ul>
+        {% for client in clients %}
+        <ul>
+            <li><a href="{{ url_for('blueprint.client', id=client.id)}}">{{ client.id }}</a></li>
+            <li><a href="{{ url_for('blueprint.client', id=client.id)}}">{{ client.username }}</a></li>
+            <li><a href="{{ url_for('blueprint.deleteClient', id=client.id)}}">Delete</a></li>
+            <li><a href="{{ url_for('blueprint.editClient', id=client.id)}}">Edit</a></li>
+        </ul>
+        {% endfor %}
+    </div>
+    {% endblock %}
+</body>
+</html>

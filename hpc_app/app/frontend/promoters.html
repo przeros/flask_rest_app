@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promoters</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+<body>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/clients">Clients</a></li>
+        <li><a href="/promoters">Promoters</a></li>
+        <li><a href="/emailTokens">EmailConfirmationTokens</a></li>
+        <li><a href="/query1">Query1</a></li>
+        <li><a href="/query2">Query2</a></li>
+    </ul>
+
+    <h1>Promoters</h1>
+
+    {% block content %}
+    <div>
+        <br /><a href="/promoters/add">Add promoter</a><br /><br />
+
+        <ul>
+            <li><a href="#">Id</a></li>
+            <li><a href="#">Username</a></li>
+            <li><a href="#">Delete Promoter</a></li>
+            <li><a href="#">Edit Promoter</a></li>
+        </ul>
+        {% for promoter in promoters %}
+        <ul>
+            <li><a href="{{ url_for('blueprint.promoter', id=promoter.id)}}">{{ promoter.id }}</a></li>
+            <li><a href="{{ url_for('blueprint.promoter', id=promoter.id)}}">{{ promoter.username }}</a></li>
+            <li><a href="{{ url_for('blueprint.deletePromoter', id=promoter.id)}}">Delete</a></li>
+            <li><a href="{{ url_for('blueprint.editPromoter', id=promoter.id)}}">Edit</a></li>
+        </ul>
+        {% endfor %}
+    </div>
+    {% endblock %}
+</body>
+</html>

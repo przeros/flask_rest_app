@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Client</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+<body>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/clients">Clients</a></li>
+        <li><a href="/promoters">Promoters</a></li>
+        <li><a href="/emailTokens">EmailConfirmationTokens</a></li>
+        <li><a href="/query1">Query1</a></li>
+        <li><a href="/query2">Query2</a></li>
+    </ul>
+
+    <h1>Add Client</h1>
+
+    {% block content %}
+    <form method="post" action="{{'/clients'}}">
+
+    <label for="username">username</label>
+    <input type="text" name="username"> <br />
+
+    <label for="dateOfBirth">dateOfBirth</label>
+    <input type="date" name="dateOfBirth"> <br />
+
+    <label for="email">email</label>
+    <input type="text" name="email"><br />
+
+    <label for="favoriteMusic">favoriteMusic</label>
+    <input type="text" name="favoriteMusic"><br />
+
+    <label for="favoriteEventType">favoriteEventType</label>
+    <input type="text" name="favoriteEventType"><br />
+
+    <button type="submit">Submit</button>
+
+</form>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Email Token</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+<body>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/clients">Clients</a></li>
+        <li><a href="/promoters">Promoters</a></li>
+        <li><a href="/emailTokens">EmailConfirmationTokens</a></li>
+        <li><a href="/query1">Query1</a></li>
+        <li><a href="/query2">Query2</a></li>
+    </ul>
+
+    <h1>Add Email Token</h1>
+
+    {% block content %}
+    <form method="post" action="{{'/emailTokens'}}">
+
+    <label for="creationDate">creationDate</label>
+    <input type="date" name="creationDate"> <br />
+
+    <label for="confirmationDate">confirmationDate</label>
+    <input type="date" name="confirmationDate"> <br />
+
+    <label for="expirationDate">expirationDate</label>
+    <input type="date" name="expirationDate"><br />
+
+    <label for="token">token</label>
+    <input type="text" name="token"><br />
+
+    <label for="userId">userId</label>
+    <input type="text" name="userId"><br />
+
+    <button type="submit">Submit</button>
+
+</form>
+    {% endblock %}
+</body>
+</html>

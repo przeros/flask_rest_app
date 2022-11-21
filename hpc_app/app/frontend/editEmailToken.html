@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Email Token</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+<body>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/clients">Clients</a></li>
+        <li><a href="/promoters">Promoters</a></li>
+        <li><a href="/emailTokens">EmailConfirmationTokens</a></li>
+        <li><a href="/query1">Query1</a></li>
+        <li><a href="/query2">Query2</a></li>
+    </ul>
+
+    <h1>Edit Email Token</h1>
+
+    {% block content %}
+    <form method="post">
+
+    <label for="confirmationDate">confirmationDate</label>
+    <input type="date" name="confirmationDate"> <br />
+
+    <label for="expirationDate">expirationDate</label>
+    <input type="date" name="expirationDate"><br />
+
+    <label for="token">token</label>
+    <input type="text" name="token"><br />
+
+    <button type="submit">Submit</button>
+
+</form>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Client</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+<body>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/clients">Clients</a></li>
+        <li><a href="/promoters">Promoters</a></li>
+        <li><a href="/emailTokens">EmailConfirmationTokens</a></li>
+        <li><a href="/query1">Query1</a></li>
+        <li><a href="/query2">Query2</a></li>
+    </ul>
+
+    <h1>Client</h1>
+
+    {% block content %}
+    <div>
+        <li>username: {{ client.username }}</li><br />
+        <li>dateOfBirth: {{client.dateOfBirth }}</li><br />
+        <li>email: {{ client.email }}</li><br />
+        <li>enabled: {{ client.enabled }}</li><br />
+        <li>locked: {{ client.locked }} </li><br />
+        <li>staticUserId: {{ client.staticUserId }}</li><br />
+        <li>favoriteMusic: {{ client.favoriteMusic }}</li><br />
+        <li>favoriteEventType: {{ client.favoriteEventType }}</li><br />
+        <li>registrationDate: {{ client.registrationDate }}</li><br />
+    </div>
+    {% endblock %}
+</body>
+</html>

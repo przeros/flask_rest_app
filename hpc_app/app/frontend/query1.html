@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Query 1</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+<body>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/clients">Clients</a></li>
+        <li><a href="/promoters">Promoters</a></li>
+        <li><a href="/emailTokens">EmailConfirmationTokens</a></li>
+        <li><a href="/query1">Query1</a></li>
+        <li><a href="/query2">Query2</a></li>
+    </ul>
+
+    <h1>Query 2</h1>
+
+    <div>
+      Query 1 ORM time:
+      {{time1}}<br /><br />
+      <br />
+      Query 1 SQL time:
+      {{time2}}<br /><br />
+
+      Query 1 response:<br />
+      {% for response in responses %}
+      {{response}}<br />
+      {% endfor %}
+    </div>
+</body>
+</html>

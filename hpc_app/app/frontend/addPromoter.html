@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Promoter</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+<body>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/clients">Clients</a></li>
+        <li><a href="/promoters">Promoters</a></li>
+        <li><a href="/emailTokens">EmailConfirmationTokens</a></li>
+        <li><a href="/query1">Query1</a></li>
+        <li><a href="/query2">Query2</a></li>
+    </ul>
+
+    <h1>Add Promoter</h1>
+
+    {% block content %}
+    <form method="post" action="{{'/promoters'}}">
+
+    <label for="username">username</label>
+    <input type="text" name="username"> <br />
+
+    <label for="dateOfBirth">dateOfBirth</label>
+    <input type="date" name="dateOfBirth"> <br />
+
+    <label for="email">email</label>
+    <input type="text" name="email"><br />
+
+    <label for="totalProvisionEarned">totalProvisionEarned</label>
+    <input type="text" name="totalProvisionEarned"><br />
+
+    <label for="totalTicketsSold">totalTicketsSold</label>
+    <input type="text" name="totalTicketsSold"><br />
+
+    <label for="employmentDate">employmentDate</label>
+    <input type="text" name="employmentDate"><br />
+
+    <button type="submit">Submit</button>
+
+</form>
+    {% endblock %}
+</body>
+</html>

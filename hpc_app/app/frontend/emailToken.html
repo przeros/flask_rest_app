@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Token</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+<body>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/clients">Clients</a></li>
+        <li><a href="/promoters">Promoters</a></li>
+        <li><a href="/emailTokens">EmailConfirmationTokens</a></li>
+        <li><a href="/query1">Query1</a></li>
+        <li><a href="/query2">Query2</a></li>
+    </ul>
+
+    <h1>Email Token</h1>
+
+    {% block content %}
+    <div>
+        <li>creationDate: {{ emailToken.creationDate }}</li><br />
+        <li>confirmationDate: {{ emailToken.confirmationDate }}</li><br />
+        <li>expirationDate: {{ emailToken.expirationDate }}</li><br />
+        <li>token: {{ emailToken.token }}</li><br />
+        <li>userId: {{ emailToken.userId }} </li><br />
+        <li>staticEmailConfirmationTokenId: {{ emailToken.staticEmailConfirmationTokenId }} </li><br />
+    </div>
+    {% endblock %}
+</body>
+</html>

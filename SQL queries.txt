@@ -1,0 +1,14 @@
+SELECT public."User".id
+FROM public."User"
+JOIN emailConfirmationToken
+ON emailConfirmationToken.userId = public."User".id
+WHERE public."User".email LIKE '%@kio.pl'
+
+SELECT AVG(user.totalTicketsSold), AVG(user.totalProvisionEarned)
+FROM user
+JOIN emailConfirmationToken
+ON emailConfirmationToken.userId = user.id
+GROUP BY user.dateOfBirth
+HAVING user.userType == 'promoter'
+AND YEAR(emailConfirmationToken.confirmationDate) == 2022
+ORDER BY AVG(user.totalTicketsSold) ASC

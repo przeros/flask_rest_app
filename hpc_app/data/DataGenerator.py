@@ -3,10 +3,10 @@ import string
 import datetime
 import csv
 
-numOfClients = 100
-numOfPromoters = 100
+numOfClients = 1000
+numOfPromoters = 1000
 numOfUsers = numOfClients + numOfPromoters
-numOfEmailTokens = 100
+numOfEmailTokens = 1000
 
 def generateRandomString(length):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
@@ -19,7 +19,8 @@ def generateDateOfBirth():
     return datetime.date(random.randint(1950,2022), random.randint(1,12), random.randint(1,28))
 
 def generateEmail():
-    return generateRandomString(5) + "@gmail.com"
+    domenTypes = ["@gmail.com", "@wp.pl", "@kio.pl"]
+    return generateRandomString(5) + domenTypes[random.randint(0, len(domenTypes) - 1)]
 
 def generateEnabled():
     return random.randint(0, 1)

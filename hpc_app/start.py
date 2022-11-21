@@ -1,10 +1,9 @@
 from app import app
-from flask import Flask, jsonify
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from sqlalchemy.orm import relationship
 from app.db.db import db
-from app.entities.User import User
 from app.entities.Client import Client
 from app.entities.Promoter import Promoter
 from app.entities.Static_User import StaticUser
@@ -166,7 +165,7 @@ def loadEmailConfirmationTokensToDb():
         db.session.commit()
 
 
-app = Flask(__name__, template_folder="app/frontend")
+app = Flask(__name__, template_folder="app/frontend", static_folder="app/frontend/static")
 app.config.from_object("app.config.Config")
 db.init_app(app)
 app.register_blueprint(blueprint, url_prefix="/")
